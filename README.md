@@ -119,7 +119,7 @@ Then on repeat requests, to retrieve the same basket you can construct the objec
 		static void Main(string[] args)
 		{
 			TTNCApi api = new TTNCApi();
-			api.usesession(<SessionId>); # From the previous request, stored in your own code
+			api.usesession(<SessionId>); // From the previous request, stored in your own code
 			TTNCRequest request = api.NewRequest("Order", "ViewBasket", "Request1");
 			api.MakeRequests();
 			TTNCParser dic = request.GetResponse();
