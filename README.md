@@ -81,7 +81,7 @@ The response can be retrieved from the request object after *MakeRequests* has b
 Alternatively, you can retrieve the response from the response from the API based on the ID passed to the request;
 
 ```csharp
-	TTNCParser dic = api.GetResponseFromId('Request1');
+	TTNCParser dic = api.GetResponseFromId("Request1");
 ```
 
 ### Advanced Usage
@@ -101,11 +101,11 @@ The client deals automatically with the *Auth* requests for you, however, in ord
 			request.setData("number", "02031231231");
 			request.setData("type", "number");
 			api.MakeRequests();
-			TTNCParser dic = api.GetResponseFromId('SessionRequest');
+			TTNCParser dic = api.GetResponseFromId("SessionRequest");
          }
     }
 	
-	# Store dic['SessionId'] in your own code.
+	// Store dic["SessionId"] in your own code.
 ```
 
 Then on repeat requests, to retrieve the same basket you can construct the object without authentication and then parse in the SessionId to use on Requests;
@@ -125,7 +125,7 @@ Then on repeat requests, to retrieve the same basket you can construct the objec
 			TTNCParser dic = request.GetResponse();
          }
     }
-    # dic now contains a representation of your basket.
+    // dic now contains a representation of your basket.
 ```
 
 ## Getting Support
