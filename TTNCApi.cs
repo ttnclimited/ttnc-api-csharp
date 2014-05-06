@@ -100,7 +100,7 @@ namespace TTNC
             Console.WriteLine(this.Doc.InnerXml);
 
             byte[] bytes = Encoding.UTF8.GetBytes(this.Doc.InnerXml);
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://xml.ttnc.co.uk/api/");
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://xml.ttnc.co.uk/api/");
             request.Method = "POST";
             request.ContentLength = bytes.Length;
             request.ContentType = "text/xml";
