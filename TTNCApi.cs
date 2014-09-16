@@ -5,8 +5,10 @@ using System.Collections;
 using System.Net;
 using System.Collections.Generic;
 using System.Xml;
+
 namespace TTNC
 {
+
     class TTNCApi
     {
         #region properties
@@ -226,15 +228,14 @@ namespace TTNC
     class TTNCParser
     {
         #region attributes
-
-        public Dictionary<string, TTNCParser> value_dic;
+        public Dictionary<string, List<TTNCParser>> value_dic_List=new Dictionary<string,List<TTNCParser>>();
         public String value_string;
         #endregion
 
         #region constructors
         public TTNCParser(XmlElement document)
         {
-            this.value_dic = new Dictionary<string, TTNCParser>();
+            
             this.value_string = "";
 
             if (document.HasChildNodes)
@@ -246,7 +247,12 @@ namespace TTNC
                         if (x is XmlElement)
                         {
                             XmlElement e = (XmlElement)x;
-                            this.value_dic[e.Name.ToString()] = new TTNCParser(e);
+                            TTNCParser P = new TTNCParser(e);
+                            if (!this.value_dic_List.ContainsKey(e.Name.ToString()))
+                            {
+                                this.value_dic_List[e.Name.ToString()] = new List<TTNCParser>();
+                            }
+                            this.value_dic_List[e.Name.ToString()].Add(P);
                         }
                         else if (x is XmlText)
                         {
@@ -268,15 +274,24 @@ namespace TTNC
 
         public TTNCParser(XmlElement document, bool attrib)
         {
-
-            this.value_dic = new Dictionary<string, TTNCParser>();
+            TTNCParser P ;
             this.value_string = "";
             if (document.HasAttributes)
             {
-                this.value_dic["@attribute"] = new TTNCParser();
+                 P = new TTNCParser();
+                
                 foreach (XmlAttribute attr in document.Attributes)
                 {
-                    this.value_dic["@attribute"].value_dic[attr.Name + ""] = new TTNCParser(attr.Value + "");
+                    if (!this.value_dic_List.ContainsKey("@attribute"))
+                    {
+                        this.value_dic_List["@attribute"] = new List<TTNCParser>();
+                    }
+                    if (!P.value_dic_List.ContainsKey(attr.Name + ""))
+                    {
+                        P.value_dic_List[attr.Name + ""] = new List<TTNCParser>();
+                    }
+                    P.value_dic_List[attr.Name + ""].Add( new TTNCParser(attr.Value + ""));
+                    this.value_dic_List["@attribute"].Add(P);
                 }
             }
 
@@ -285,7 +300,11 @@ namespace TTNC
 
                 foreach (XmlElement x in document)
                 {
-                    this.value_dic[x.Name.ToString()] = new TTNCParser(x);
+                    if (!this.value_dic_List.ContainsKey(x.Name.ToString()))
+                    {
+                        this.value_dic_List[x.Name.ToString()] = new List<TTNCParser>();
+                    }
+                    this.value_dic_List[x.Name.ToString()].Add(new TTNCParser(x));
                 }
 
             }
@@ -297,7 +316,6 @@ namespace TTNC
 
         public TTNCParser()
         {
-            this.value_dic = new Dictionary<string, TTNCParser>();
             this.value_string = "";
         }
         #endregion
@@ -305,18 +323,21 @@ namespace TTNC
         #region Methods
         public TTNCParser(String value)
         {
-            this.value_dic = new Dictionary<string, TTNCParser>();
             this.value_string = value;
         }
 
         public void display()
         {
-            if (this.value_dic != null && this.value_dic.Count > 0)
+
+            if (this.value_dic_List != null && this.value_dic_List.Count > 0)
             {
-                foreach (KeyValuePair<string, TTNCParser> d in this.value_dic)
+                foreach (KeyValuePair<string, List<TTNCParser>> d in this.value_dic_List)
                 {
                     Console.Write(d.Key + " =>");
-                    d.Value.display();
+                    
+                    for(int j=0; j < d.Value.Count ;j++){
+                        d.Value[j].display();
+                    }
                 }
             }
             else
@@ -327,6 +348,7 @@ namespace TTNC
         #endregion
 
     }
+
 
     #region structs
 
