@@ -1,8 +1,8 @@
 #TTNC's C# API Client
 
-A simple C# library that handles connection, authentication, requests and parsing of responses to and from TTNC's API. For more information on TTNC's API visit [TTNC's API Pages](http://www.ttnc.co.uk/myttnc/ttnc-api/) or [TTNC's Developer Centre](http://developer.ttnc.co.uk)
+A simple C# library that handles connection, authentication, requests and parsing of responses to and from TTNC's API. For more information on TTNC's API visit [TTNC's main API page](http://www.ttnc.co.uk/other-services/ttnc-api)
 
-A list of function requests available via the API can be found [here](http://developer.ttnc.co.uk/functions/)
+A list of function requests available via the API can be found [here](http://www.ttnc.co.uk/help/api-functions)
 
 ## Requirements
 
@@ -15,7 +15,7 @@ The API can be constructed as follows;
 ```csharp
 	using System;
 	using TTNCApi;
-	
+
 	class Program
 	{
 		static void Main(string[] args)
@@ -38,7 +38,7 @@ Requests can then be 'spooled' in the object until the *MakeRequests* method is 
 ```csharp
 	using System;
 	using TTNCApi;
-	
+
 	class Program
 	{
 		static void Main(string[] args)
@@ -48,7 +48,7 @@ Requests can then be 'spooled' in the object until the *MakeRequests* method is 
 			api.MakeRequests();
 			TTNCParser dic = request.GetResponse();
          }
-    }	
+    }
 ```
 
 In order to send data in a request - the *setData* method can  be called on the *Request* object;
@@ -56,7 +56,7 @@ In order to send data in a request - the *setData* method can  be called on the 
 ```csharp
 	using System;
 	using TTNCApi;
-	
+
 	class Program
 	{
 		static void Main(string[] args)
@@ -91,7 +91,7 @@ The client deals automatically with the *Auth* requests for you, however, in ord
 ```csharp
 	using System;
 	using TTNCApi;
-	
+
 	class Program
 	{
 		static void Main(string[] args)
@@ -104,7 +104,7 @@ The client deals automatically with the *Auth* requests for you, however, in ord
 			TTNCParser dic = api.GetResponseFromId("SessionRequest");
          }
     }
-	
+
 	// Store dic["SessionId"] in your own code.
 ```
 
@@ -113,7 +113,7 @@ Then on repeat requests, to retrieve the same basket you can construct the objec
 ```csharp
 	using System;
 	using TTNCApi;
-	
+
 	class Program
 	{
 		static void Main(string[] args)
@@ -130,5 +130,4 @@ Then on repeat requests, to retrieve the same basket you can construct the objec
 
 ## Getting Support
 
-If you have any questions or support queries then first please read the [Developers Site](http://developer.ttnc.co.uk) and then email support@ttnc.co.uk.
-
+If you have any questions or support queries then first please read the [Developers Site](http://www.ttnc.co.uk/other-services/ttnc-api) and then email support@ttnc.co.uk.
