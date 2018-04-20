@@ -1,8 +1,8 @@
 #TTNC's C# API Client
 
-A simple C# library that handles connection, authentication, requests and parsing of responses to and from TTNC's API. For more information on TTNC's API visit [TTNC's main API page](http://www.ttnc.co.uk/other-services/ttnc-api)
+A simple C# library that handles connection, authentication, requests and parsing of responses to and from TTNC's API. For more information on TTNC's API visit [TTNC's main API page](https://help.ttnc.co.uk/docs/api)
 
-A list of function requests available via the API can be found [here](http://www.ttnc.co.uk/help/api-functions)
+A list of function requests available via the API can be found in the [documentation](https://help.ttnc.co.uk/docs/api)
 
 ## Requirements
 
@@ -130,4 +130,4 @@ Then on repeat requests, to retrieve the same basket you can construct the objec
 
 ## Getting Support
 
-If you have any questions or support queries then first please read the [Developers Site](http://www.ttnc.co.uk/other-services/ttnc-api) and then email support@ttnc.co.uk.
+If you have any questions or support queries then first please read the [Developers Site](hhttps://help.ttnc.co.uk/docs/api) and then email support@ttnc.co.uk.
