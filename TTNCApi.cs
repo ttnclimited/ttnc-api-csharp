@@ -30,6 +30,8 @@ namespace TTNC
 
         public TTNCApi(String username, String password, String VKey)
         {
+            ServicePointManager.SecurityProtocol |= SecurityProtocolType.Tls12;
+
             this.requests = new ArrayList();
             this.username = username;
             this.password = password;
@@ -40,8 +42,11 @@ namespace TTNC
             this.Doc.AppendChild(Root);
             this.sessionRequest();
         }
+
         public TTNCApi()
         {
+            ServicePointManager.SecurityProtocol |= SecurityProtocolType.Tls12;
+
             this.requests = new ArrayList();
             this.Doc = new XmlDocument();
             this.Root = this.Doc.CreateElement("", "NoveroRequest", "");
@@ -58,6 +63,8 @@ namespace TTNC
             request.setData("Username", this.username);
             request.setData("Password", this.password);
             request.setData("VKey", this.vKey);
+            request.UserAgent = "TTNC_Client_CSharp";
+
             Request_tree t = new Request_tree();
             t.request = request;
             t.id = request.RequestId;
@@ -235,7 +242,7 @@ namespace TTNC
         #region constructors
         public TTNCParser(XmlElement document)
         {
-            
+
             this.value_string = "";
 
             if (document.HasChildNodes)
@@ -279,7 +286,7 @@ namespace TTNC
             if (document.HasAttributes)
             {
                  P = new TTNCParser();
-                
+
                 foreach (XmlAttribute attr in document.Attributes)
                 {
                     if (!this.value_dic_List.ContainsKey("@attribute"))
@@ -334,7 +341,7 @@ namespace TTNC
                 foreach (KeyValuePair<string, List<TTNCParser>> d in this.value_dic_List)
                 {
                     Console.Write(d.Key + " =>");
-                    
+
                     for(int j=0; j < d.Value.Count ;j++){
                         d.Value[j].display();
                     }
