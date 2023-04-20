@@ -63,7 +63,6 @@ namespace TTNC
             request.setData("Username", this.username);
             request.setData("Password", this.password);
             request.setData("VKey", this.vKey);
-            request.UserAgent = "TTNC_Client_CSharp";
 
             Request_tree t = new Request_tree();
             t.request = request;
@@ -113,6 +112,7 @@ namespace TTNC
             request.Method = "POST";
             request.ContentLength = bytes.Length;
             request.ContentType = "text/xml";
+            request.UserAgent = "TTNC_Client_CSharp";
             using (Stream requestStream = request.GetRequestStream())
             {
                 requestStream.Write(bytes, 0, bytes.Length);
